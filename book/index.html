@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>首页——杰瑞教育图书管理系统</title>
+		<link rel="stylesheet" type="text/css" href="../libs/bootstrap.css"/>
+		<style type="text/css">
+			body{
+				margin: 0 auto;
+				padding: 0 auto;
+				background-color: #F0F2F4;
+			}
+			.container{
+				width: 1000px;
+				margin: 50px auto;
+			}
+			.list-group-item{
+				text-align: center;
+			}
+			.moren{
+				height: 400px;
+				background-color: grey;
+				font-size: 70px;
+				color: #FFFFFF;
+				text-align: center;
+				font-weight: bold;
+				line-height: 120px;
+				padding-top: 65px;
+			}
+			.panel-primary .row{
+				margin-bottom: 10px;
+			}
+			
+			.btn-danger{
+				display: block;
+				margin: 40px auto;
+			}
+		</style>
+	</head>
+	
+	<body ng-app="app" ng-controller="ctrl">
+		
+		<div class="container" >
+			<div class="row">
+				<div class="col-xs-2">
+					<div class="list-group">
+					  <a class="list-group-item active">
+					    	操作列表
+					  </a>
+					  <a href="#/" class="list-group-item">返回首页</a>
+					  <a href="#/all" class="list-group-item">全部图书</a>
+					  <a href="#/add" class="list-group-item">新增图书</a>
+					  <a href="#/del" class="list-group-item disabled">删除图书</a>
+					  <a href="#/sea" class="list-group-item disabled">查询图书</a>
+					</div>
+					
+					<a class="btn btn-danger" href="login.html">退出系统</a>
+				</div>
+				
+				<div class="col-xs-10" ng-view>
+					
+				</div>
+				
+			</div>
+		</div>
+		
+	</body>
+	<script src="../libs/angular.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../libs/angular-route.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		angular.module("app",["ngRoute"])
+		.config(function($routeProvider){
+			$routeProvider
+			.when("/",{templateUrl:"moren.html"})
+			.when("/all",{templateUrl:"showbook.html"})
+			.when("/add",{templateUrl:"addbook.html"})
+			.when("/del",{template:"这是删除图书页面"})
+			.when("/sea",{template:"这是查询图书页面"})
+			.when("/update",{templateUrl:"updatebook.html"})
+			.otherwise({redirectTo:"/"})
+		})
+		.controller("ctrl",function($scope,$location){
+			$scope.bookList = [
+				{"name": "姜浩真帅1","author": "姜浩","date": "2015-06-17","price": "40","num": "100","printer": "杰瑞教育出版社"},
+				{"name": "姜浩真帅2","author": "姜浩","date": "2015-06-17","price": "40","num": "100","printer": "杰瑞教育出版社"},
+				{"name": "姜浩真帅3","author": "姜浩","date": "2015-06-17","price": "40","num": "100","printer": "杰瑞教育出版社"},
+				{"name": "姜浩真帅4","author": "姜浩","date": "2015-06-17","price": "40","num": "100","printer": "杰瑞教育出版社"},
+				{"name": "姜浩真帅5","author": "姜浩","date": "2015-06-17","price": "40","num": "100","printer": "杰瑞教育出版社"},
+				{"name": "姜浩真帅6","author": "姜浩","date": "2015-06-17","price": "40","num": "100","printer": "杰瑞教育出版社"},
+				{"name": "姜浩真帅7","author": "姜浩","date": "2015-06-17","price": "40","num": "100","printer": "杰瑞教育出版社"},
+				{"name": "姜浩真帅8","author": "姜浩","date": "2015-06-17","price": "40","num": "100","printer": "杰瑞教育出版社"},
+				{"name": "姜浩真帅9","author": "姜浩","date": "2015-06-17","price": "40","num": "100","printer": "杰瑞教育出版社"},
+				{"name": "姜浩真帅10","author": "姜浩","date": "2015-06-17","price": "40","num": "100","printer": "杰瑞教育出版社"},
+				{"name": "姜浩真帅11","author": "姜浩","date": "2015-06-17","price": "40","num": "100","printer": "杰瑞教育出版社"},
+				{"name": "姜浩真帅12","author": "姜浩","date": "2015-06-17","price": "40","num": "100","printer": "杰瑞教育出版社"},
+				{"name": "姜浩真帅13","author": "姜浩","date": "2015-06-17","price": "40","num": "100","printer": "杰瑞教育出版社"},
+				{"name": "姜浩真帅14","author": "姜浩","date": "2015-06-17","price": "40","num": "100","printer": "杰瑞教育出版社"},
+				{"name": "姜浩真帅15","author": "姜浩","date": "2015-06-17","price": "40","num": "100","printer": "杰瑞教育出版社"}
+			];
+			
+			$scope.delBook = function(index){
+				//从数组的第index条开始删，删除1条
+				$scope.bookList.splice(index,1);
+			};
+			
+//			$scope.bookName = "1";
+			$scope.book = {
+				"name": "",
+				"author": "",
+				"date": "",
+				"price": "",
+				"num": "",
+				"printer": ""
+			}
+			
+			$scope.addBook = function(){
+				//console.log($scope.book);
+				$scope.bookList.unshift($scope.book);
+				var isTrue = confirm("添加成功，是否返回首页！")
+				if (isTrue) {
+					$location.path("/all");
+				}
+				$scope.book = {
+					"name": "",
+					"author": "",
+					"date": "",
+					"price": "",
+					"num": "",
+					"printer": ""
+				}
+			};
+			$scope.updateIndex = -1;
+			$scope.loadData = function(index){
+				$scope.updateIndex = index;
+				$scope.book = {
+					"name": $scope.bookList[index].name,
+					"author": $scope.bookList[index].author,
+					"date": $scope.bookList[index].date,
+					"price": $scope.bookList[index].price,
+					"num": $scope.bookList[index].num,
+					"printer": $scope.bookList[index].printer
+				}
+			}
+			
+			$scope.update = function(){
+				$scope.bookList[$scope.updateIndex] = {
+					"name": $scope.book.name,
+					"author": $scope.book.author,
+					"date": $scope.book.date,
+					"price": $scope.book.price,
+					"num": $scope.book.num,
+					"printer": $scope.book.printer
+				}
+				
+				$location.path("/all");
+				$scope.book = {
+					"name": "",
+					"author": "",
+					"date": "",
+					"price": "",
+					"num": "",
+					"printer": ""
+				}
+			}
+			
+			
+			
+		})
+	</script>
+</html>

@@ -1,0 +1,39 @@
+<div class="showBookList">
+		<div class="row" style="margin-bottom: 10px;">
+			<div class="col-xs-3" style="text-align: right; font-size: 16px; line-height: 30px;">
+				请输入筛选信息：
+			</div>
+			<div class="col-xs-5">
+				<input type="text" ng-model="search" class="form-control" />
+			</div>
+		</div>
+		
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>序号</th>
+					<th>书名</th>
+					<th>作者</th>
+					<th>出版日期</th>
+					<th>价格</th>
+					<th>库存</th>
+					<th>出版社</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<!--遍历对象：ng-options = "x for (x,y) in list "-->
+			<tr ng-repeat="item in bookList|filter:search" >
+				<td>{{$index+1}}</td>
+				<td>{{item.name}}</td>
+				<td>{{item.author}}</td>
+				<td>{{item.date}}</td>
+				<td>{{item.price | currency}}</td>
+				<td>{{item.num}}</td>
+				<td>{{item.printer }}</td>
+				<td>
+					<a ng-click="loadData($index)" href="#/update">修改</a>
+					<a ng-click="delBook($index)" style="cursor: pointer;">删除</a>
+				</td>
+			</tr>
+	</table>
+</div>

@@ -1,0 +1,73 @@
+<div class="panel panel-primary" style="width: 400px; margin: 0px auto;">
+	<div class="panel-heading">
+		<div class="panel-title">
+			新增图书
+		</div>
+	</div>
+	<div class="panel-body">
+	<form>
+		<div class="row">
+			<div class="col-xs-4" style="text-align: center; line-height: 32px;">
+				书名:
+			</div>
+			<div class="col-xs-8">
+				<!--<p class="form-control-static">email@example.com</p>-->
+				<input class="form-control" ng-model="book.name" />
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-xs-4" style="text-align: center; line-height: 32px;">
+				作者:
+			</div>
+			<div class="col-xs-8">
+				<!--<p class="form-control-static">email@example.com</p>-->
+				<input class="form-control" ng-model="book.author" />
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-xs-4" style="text-align: center; line-height: 32px;">
+				出版日期:
+			</div>
+			<div class="col-xs-8">
+				<!--<p class="form-control-static">email@example.com</p>-->
+				<input class="form-control" ng-model="book.date" />
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-xs-4" style="text-align: center; line-height: 32px;">
+				单价:
+			</div>
+			<div class="col-xs-8">
+				<!--<p class="form-control-static">email@example.com</p>-->
+				<input class="form-control" ng-model="book.price" />
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-xs-4" style="text-align: center; line-height: 32px;">
+				库存:
+			</div>
+			<div class="col-xs-8">
+				<!--<p class="form-control-static">email@example.com</p>-->
+				<input class="form-control" ng-model="book.num" />
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-xs-4" style="text-align: center; line-height: 32px;">
+				出版社:
+			</div>
+			<div class="col-xs-8">
+				<!--<p class="form-control-static">email@example.com</p>-->
+				<input class="form-control" ng-model="book.printer" />
+			</div>
+		</div>
+		
+		<button class="btn btn-primary" style="display: block; margin: 0 auto;" ng-click="addBook()">提交</button>
+		
+	</form>
+	</div>
+</div>
